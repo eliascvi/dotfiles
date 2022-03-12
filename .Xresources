@@ -1,0 +1,135 @@
+! ------------------------------------------------------------------------------
+! URxvt standard arcolinux theme - Reload with xrdb -merge ~/.Xresources
+! or alias merge
+! ------------------------------------------------------------------------------
+
+! Xorg issue nov 2021 - use and change if needed
+! Xft.dpi:   96
+
+! general settings
+URxvt.saveLines:        50000
+URxvt.termName:         xterm-256color
+URxvt.urgentOnBell:     false
+URxvt.visualBell:       false
+URxvt.iso14755:         false
+URxvt.iso14755_52:      false
+URxvt.meta8:            false
+URxvt.metaSendsEscape:  true
+URxvt.iconFile:  		/usr/share/icons/Sardi-Mono/scalable/apps/terminal.svg
+URxvt.urlLauncher:      brave
+URxvt.underlineURLs:    true
+URxvt.urlButton:        1
+URxvt.cursorBlink:       true
+
+! appearance
+URxvt.geometry: 		100x30
+URxvt.depth:             32
+!URxvt.transparent:      false
+!URxvt.shading:           10
+!URxvt.underlineColor:    #4682B4
+!URxvt.highlightColor:    #fe8019
+!URxvt.throughColor:      #4682B4
+URxvt.scrollBar:         false
+URxvt.scrollTtyOutput:   false
+URxvt.scrollWithBuffer:  true
+URxvt.scrollTtyKeypress: true
+URxvt.internalBorder:    0
+URxvt.externalBorder:    0
+!URxvt.colorIT:      	 #4682B4
+!URxvt.colorBD:      	 #F9F9F9
+!URxvt.colorUL:      	 #87afd7
+
+! special
+*.foreground:   #F9F9F9
+
+URxvt.foreground:   #F9F9F9
+!URxvt.background:   [80]#222222
+!URxvt.background:	#000000
+!URxvt.background:  rgba:2222/2222/2222/AAAA
+!URxvt.background:  [80]#404552
+!URxvt.background:  [70]#3F424A
+
+*.cursorColor:  #c8c8c8
+
+! hard contrast: *background: #1d2021
+!*background: #282828
+! soft contrast: *background: #32302f
+!*foreground: #ebdbb2
+! Black + DarkGrey
+!*color0:  #282828
+!*color8:  #928374
+! DarkRed + Red
+!*color1:  #cc241d
+!*color9:  #fb4934
+! DarkGreen + Green
+!*color2:  #98971a
+!*color10: #b8bb26
+! DarkYellow + Yellow
+!*color3:  #d79921
+!*color11: #fabd2f
+! DarkBlue + Blue
+!*color4:  #458588
+!*color12: #83a598
+! DarkMagenta + Magenta
+!*color5:  #b16286
+!*color13: #d3869b
+! DarkCyan + Cyan
+!*color6:  #689d6a
+!*color14: #8ec07c
+! LightGrey + White
+!*color7:  #a89984
+!*color15: #ebdbb2
+
+
+!!! end
+!!! get your color schemes from here
+!!! https://terminal.sexy/
+!!! copy/paste colorcodes in
+
+! fonts
+URxvt.letterSpace: 	    		0
+URxvt.font:                 	xft:Cousine Nerd Font Mono:regular:size=12,xft:Monospace:size=13
+!URxvt.imFont:               	xft:Monospace:regular:size=11
+URxvt.italicFont:           	xft:Monospace:italic:size=11,xft:Hack Nerd Font:size=12
+URxvt.boldFont:             	xft:Cousine Nerd Font Mono:bold:size=13
+!URxvt.boldItalicFont:     		xft:Monospace:regular:size=11
+! run :.!fc-list | grep <font-name>
+
+! perl extensions
+! You can install extra perl extensions you should add them here
+URxvt.perl-ext-common:  default,clipboard,url-select,keyboard-select,fullscreen,resize-font
+!URxvt.perl-ext-common:  default,clipboard,url-select,keyboard-select,tabbed
+
+! macros for resize-font - sudo pacman -S urxvt-resize-font-git
+URxvt.resize-font.step:   1
+URxvt.keysym.C-minus:     resize-font:smaller
+URxvt.keysym.C-plus:      resize-font:bigger
+URxvt.keysym.C-equal:     resize-font:reset
+URxvt.keysym.C-question:  resize-font:show
+URxvt.keysym.C-Down:      resize-font:smaller
+URxvt.keysym.C-Up:        resize-font:bigger
+
+! macros for clipboard and selection
+URxvt.copyCommand:      xclip -i -selection clipboard
+URxvt.pasteCommand:     xclip -o -selection clipboard
+URxvt.keysym.M-c:       perl:clipboard:copy
+URxvt.keysym.m-v:       perl:clipboard:paste
+URxvt.keysym.M-C-v:     perl:clipboard:paste_escaped
+URxvt.keysym.M-Escape:  perl:keyboard-select:activate
+URxvt.keysym.M-s:       perl:keyboard-select:search
+URxvt.keysym.M-u:       perl:url-select:select_next
+
+! fullscreen - sudo pacman -S urxvt-fullscreen
+urxvt.keysym.F11:       perl:fullscreen:switch
+
+! tabbed
+URxvt.tabbed.tabbar-fg: 4
+URxvt.tabbed.tabbar-bg: 16
+URxvt.tabbed.tab-fg:    15
+URxvt.tabbed.tab-bg:    4
+URxvt.buffered:         false
+
+! clipboard
+URxvt.keysym.Control-Shift-C: perl:clipboard:copy
+URxvt.keysym.Control-Shift-V: perl:clipboard:paste
+
