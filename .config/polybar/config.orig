@@ -1,0 +1,761 @@
+[global/wm]
+;https://github.com/jaagr/polybar/wiki/Configuration#global-wm-settings
+margin-top = 0
+margin-bottom = 0
+
+[settings]
+;https://github.com/jaagr/polybar/wiki/Configuration#application-settings
+throttle-output = 5
+throttle-output-for = 10
+screenchange-reload = true
+compositing-background = over
+compositing-foreground = over
+compositing-overline = over
+compositing-underline = over
+compositing-border = over
+
+; Define fallback values used by all module formats
+format-foreground = #FF0000
+format-background = #00FF00
+format-underline =
+format-overline =
+format-spacing =
+format-padding =
+format-margin =
+format-offset =
+
+[colors]
+background = #00
+foreground = #f3f4f5
+occupied = #cccccc
+active = #5e81ac
+alert = #d08770
+volume-min = #a3be8c
+volume-med = #ebcb8b
+volume-max = #bf616a
+
+# BSPWM
+
+[bar/mainbar-bspwm]
+monitor = ${env:MONITOR}
+;monitor-fallback = HDMI1
+width = 100%
+height = 30
+offset-x = 0%
+offset-y = 5
+radius = 0
+fixed-center = true
+bottom = false
+separator = |
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+wm-restack = bspwm
+override-redirect = true
+
+; Enable support for inter-process messaging
+; See the Messaging wiki page for more details.
+enable-ipc = true
+
+border-size = 0
+;border-left-size = 0
+;border-right-size = 25
+;border-top-size = 0
+;border-bottom-size = 25
+border-color = #282828
+
+padding-left = 5
+padding-right = 8
+
+module-margin-left = 5
+module-margin-right = 5
+
+;https://github.com/jaagr/polybar/wiki/Fonts
+font-0 = "Noto Sans:size=10;0"
+font-1 = "FontAwesome:size=13;0"
+font-2 = "Noto Sans:size=10;0"
+font-3 = "Noto Sans Mono:size=10;0"
+font-4 = "Nerd Font:size=10;0"
+font-5 = "JetBrains Mono:size=10;0"
+font-6 = "feater:size=10:0"
+font-7 = "Material Icon:size=10:0"
+
+modules-left = bspwm xwindow alsa
+modules-right = memory2 cpu2 date
+
+tray-detached = false
+tray-offset-x = 1
+tray-offset-y = 0
+tray-padding = 15
+tray-maxsize = 15
+tray-scale = 1.0
+tray-position = center
+tray-background = ${colors.background}
+
+scroll-down = bspwm-desknext
+scroll-up = bspwm-deskprev
+
+
+################################################################################
+################################################################################
+############                       MODULE BSPWM                     ############
+################################################################################
+################################################################################
+
+[module/alsa]
+type = internal/alsa
+label-volume =   %percentage%%
+format-volume = <ramp-volume> <label-volume>
+format-volume-padding = 2 
+format-volume-foreground = #ff
+format-volume-background = #00
+format-muted = "∙  Muted"
+format-muted-padding = 1 
+format-muted-foreground = #ff
+format-muted-background = #00
+ramp-volume-0 = ⋯ / 
+ramp-volume-1 = ⋰ /
+ramp-volume-2 = ⋮ /
+
+
+[module/bspwm]
+type = internal/bspwm
+
+enable-click = true
+cursor-click = pointer
+enable-scroll = true
+reverse-scroll = true
+pin-workspaces = true
+
+# Screen 2
+ws-icon-0 = 1;
+ws-icon-1 = 2; 
+ws-icon-2 = 3;      
+ws-icon-3 = 4;
+ws-icon-4 = 5;                            
+ws-icon-5 = 6; 
+ws-icon-6 = 7;                  
+ws-icon-7 = 8;                  
+ws-icon-8 = 9;                                      
+ws-icon-9 = 10;                              
+ws-icon-default = " "
+                  
+                
+format = <label-state> <label-mode>           
+
+label-focused = %icon%
+label-focused-background = ${colors.background}
+label-focused-underline= #6790eb
+label-focused-padding = 4
+label-focused-foreground = #6790EB
+
+label-occupied = %icon%
+label-occupied-padding = 2
+label-occupied-background = ${colors.background}
+label-occupied-foreground = #fb4934
+
+label-urgent = %icon%
+label-urgent-padding = 2
+
+label-empty = %icon%
+label-empty-foreground = ${colors.foreground}
+label-empty-padding = 2
+label-empty-background = ${colors.background}
+;label-monocle = "  "
+label-monocle-foreground = ${colors.foreground}
+;label-tiled = "  "
+label-tiled-foreground = ${colors.foreground}
+;label-fullscreen = "  "
+label-fullscreen-foreground = ${colors.foreground}
+;label-floating = "  "
+label-floating-foreground = ${colors.foreground}
+;label-pseudotiled = "  "
+label-pseudotiled-foreground = ${colors.foreground}
+;label-locked = "  "
+label-locked-foreground = ${colors.foreground}
+;label-sticky = "  "
+label-sticky-foreground = ${colors.foreground}
+;label-private =  "     "
+label-private-foreground = ${colors.foreground}
+
+; Separator in between workspaces
+;label-separator = |
+;label-separator-padding = 10
+;label-separator-foreground = #ffb52a
+
+format-foreground = ${colors.foreground}
+format-background = ${colors.background}
+
+# MODULES
+
+[module/cpu2]
+;https://github.com/jaagr/polybar/wiki/Module:-cpu
+type = internal/cpu
+; Seconds to sleep between updates
+; Default: 1
+interval = 1
+format-foreground = ${colors.foreground}
+format-background = ${colors.background}
+;format-prefix = "  "
+format-prefix-foreground = #cd1f3f
+format-underline = #cd1f3f
+
+label-font = 3
+
+; Available tags:
+;   <label> (default)
+;   <bar-load>
+;   <ramp-load>
+;   <ramp-coreload>
+format = <label>
+
+format-padding = 2
+
+; Available tokens:
+;   %percentage% (default) - total cpu load
+;   %percentage-cores% - load percentage for each core
+;   %percentage-core[1-9]% - load percentage for specific core
+label = CPU: %percentage:3%%
+
+[module/date]
+;https://github.com/jaagr/polybar/wiki/Module:-date
+type = internal/date
+; Seconds to sleep between updates
+interval = 5
+; See "http://en.cppreference.com/w/cpp/io/manip/put_time" for details on how to format the date string
+; NOTE: if you want to use syntax tags here you need to use %%{...}
+;date = " %d%"
+;date-alt = " %d"
+time = %H:%M
+time-alt = %d/%m/%y 
+;format-prefix = " "
+format-prefix-foreground = #c1941a
+format-underline = #c1941a
+format-foreground = ${colors.foreground}
+format-background = ${colors.background}
+label = %date% %time%
+
+[module/memory1]
+;https://github.com/jaagr/polybar/wiki/Module:-memory
+type = internal/memory
+interval = 1
+; Available tokens:
+;   %percentage_used% (default)
+;   %percentage_free%
+;   %gb_used%
+;   %gb_free%
+;   %gb_total%
+;   %mb_used%
+;   %mb_free%
+;   %mb_total%
+label = %percentage_used%%
+bar-used-indicator =
+bar-used-width = 10
+bar-used-foreground-0 = #3384d0
+bar-used-fill = 
+bar-used-empty = 
+bar-used-empty-foreground = #ffffff
+
+format = <label> <bar-used>
+format-prefix = "  "
+format-prefix-foreground = #3384d0
+format-underline = #3384d0
+format-foreground = ${colors.foreground}
+format-background = ${colors.background}
+
+################################################################################
+
+[module/memory2]
+;https://github.com/jaagr/polybar/wiki/Module:-memory
+type = internal/memory
+interval = 1
+; Available tokens:
+;   %percentage_used% (default)
+;   %percentage_free%
+;   %gb_used%
+;   %gb_free%
+;   %gb_total%
+;   %mb_used%
+;   %mb_free%
+;   %mb_total%
+label = %percentage_used%%
+
+format = RAM: <label>
+;format-prefix = "  "
+format-prefix-foreground = #3384d0
+format-underline = #3384d0
+format-foreground = ${colors.foreground}
+format-background = ${colors.background}
+
+################################################################################
+
+[module/memory3]
+;https://github.com/jaagr/polybar/wiki/Module:-memory
+type = internal/memory
+interval = 1
+; Available tokens:
+;   %percentage_used% (default)
+;   %percentage_free%
+;   %gb_used%
+;   %gb_free%
+;   %gb_total%
+;   %mb_used%
+;   %mb_free%
+;   %mb_total%
+label = %gb_used%/%gb_free%
+
+format = Mem <label>
+format-prefix = "  "
+format-prefix-foreground = #3384d0
+format-underline = #3384d0
+format-foreground = ${colors.foreground}
+format-background = ${colors.background}
+
+
+################################################################################
+
+[module/sep]
+; alternative separator
+type = custom/text
+content = 
+content-foreground = ${colors.foreground}
+content-background =  ${colors.background}
+format-foreground = ${colors.foreground}
+format-background = ${colors.background}
+
+
+####################################################################
+[module/xwindow]
+;https://github.com/jaagr/polybar/wiki/Module:-xwindow
+type = internal/xwindow
+
+; Available tokens:
+;   %title%
+; Default: %title%
+label = %title%
+label-maxlen = 50
+
+format-foreground = ${colors.foreground}
+format-background = ${colors.background}
+
+###############################################################################
+
+
+[module/xworkspaces]
+type = internal/xworkspaces
+
+pin-workspaces = false
+enable-click = true
+enable-scroll = true
+reverse-scroll = true
+
+
+icon-0 = 1; 
+icon-1 = 2; 
+icon-2 = 3;
+icon-3 = 4;
+icon-4 = 5;
+icon-5 = 6;
+format = <label-state>
+label-monitor = %name%
+
+label-active = %index%
+label-active-foreground = ${colors.active}
+label-active-background = ${colors.background}
+label-active-underline= #6790eb
+label-active-padding = 2
+
+label-occupied = %index%
+label-occupied-foreground = ${colors.foreground}
+label-occupied-background = ${colors.background}
+label-occupied-padding = 2
+
+label-urgent = %index%
+label-urgent-foreground = ${colors.foreground}
+label-urgent-background = ${colors.alert}
+label-urgent-underline = ${colors.alert}
+label-urgent-padding = 2
+
+
+label-empty = %index%
+label-empty-foreground = ${colors.foreground}
+label-empty-padding = 2
+format-foreground = ${colors.foreground}
+format-background = ${colors.background}
+[global/wm]
+;https://github.com/jaagr/polybar/wiki/Configuration#global-wm-settings
+margin-top = 0
+margin-bottom = 0
+
+[settings]
+;https://github.com/jaagr/polybar/wiki/Configuration#application-settings
+throttle-output = 5
+throttle-output-for = 10
+screenchange-reload = true
+compositing-background = over
+compositing-foreground = over
+compositing-overline = over
+compositing-underline = over
+compositing-border = over
+
+; Define fallback values used by all module formats
+format-foreground = #FF0000
+format-background = #00FF00
+format-underline =
+format-overline =
+format-spacing =
+format-padding =
+format-margin =
+format-offset =
+
+[colors]
+background = #00
+foreground = #ebdbb2
+
+# BSPWM
+
+[bar/mainbar-bspwm]
+monitor = ${env:MONITOR}
+;monitor-fallback = HDMI1
+width = 100%
+height = 30
+offset-x = 0%
+offset-y = 5
+radius = 0.0
+fixed-center = true
+bottom = false
+separator = |
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+wm-restack = bspwm
+override-redirect = true
+
+; Enable support for inter-process messaging
+; See the Messaging wiki page for more details.
+enable-ipc = true
+
+#border-size = 0
+#border-left-size = 0
+#border-right-size = 25
+#border-top-size = 0
+#border-bottom-size = 25
+#border-color = #282828
+
+padding-left = 5
+padding-right = 8
+
+module-margin-left = 5
+module-margin-right = 5
+
+;https://github.com/jaagr/polybar/wiki/Fonts
+font-0 = "Noto Sans:size=10;0"
+font-1 = "FontAwesome:size=13;0"
+font-2 = "Noto Sans:size=10;0"
+font-3 = "Noto Sans Mono:size=10;0"
+font-4 = "Nerd Font:size=10;9"
+font-5 = "JetBrains Mono:size=10;0"
+font-6 = "feater:size=10:0"
+font-7 = "Material Icon:size=10:0"
+
+modules-left = bspwm xwindow alsa
+modules-right = memory2 cpu2 date
+
+tray-detached = false
+tray-offset-x = 1
+tray-offset-y = 0
+tray-padding = 15
+tray-maxsize = 15
+tray-scale = 1.0
+tray-position = center
+tray-background = ${colors.background}
+
+scroll-down = bspwm-desknext
+scroll-up = bspwm-deskprev
+
+# MODULES\
+
+[module/alsa]
+type = internal/alsa
+label-volume =   %percentage%%
+format-volume = <ramp-volume> <label-volume>
+format-volume-padding = 2 
+format-volume-foreground = #ff
+format-volume-background = #00
+format-muted = "∙  Muted"
+format-muted-padding = 1 
+format-muted-foreground = #ff
+format-muted-background = #00
+ramp-volume-0 = ⋯   / 
+ramp-volume-1 = ⋰   /
+ramp-volume-2 = ⋮   /
+
+
+[module/bspwm]
+type = internal/bspwm
+
+enable-click = true
+cursor-click = pointer
+enable-scroll = true
+reverse-scroll = true
+pin-workspaces = true
+
+# Screen 2
+ws-icon-0 = 1;6
+ws-icon-1 = 2;7
+ws-icon-2 = 3;8
+ws-icon-3 = 4;9
+ws-icon-4 = 5;10
+
+# Screen 1
+ws-icon-5 = 6;a
+ws-icon-6 = 7;2
+ws-icon-7 = 8;3
+ws-icon-8 = 9;4
+ws-icon-9 = 10;5
+ws-icon-default = "x"
+
+
+format = <label-state> <label-mode>
+
+label-focused = %icon%
+label-focused-background = ${colors.background}
+label-focused-padding = 4
+label-focused-foreground = #fabd2f
+
+label-occupied = %icon%
+label-occupied-padding = 2
+label-occupied-background = ${colors.background}
+label-occupied-foreground = #fb4934
+
+label-urgent = %icon%
+label-urgent-padding = 2
+
+label-empty = %icon%
+label-empty-foreground = ${colors.foreground}
+label-empty-padding = 2
+label-empty-background = ${colors.background}
+;label-monocle = "  "
+label-monocle-foreground = ${colors.foreground}
+;label-tiled = "  "
+label-tiled-foreground = ${colors.foreground}
+;label-fullscreen = "  "
+label-fullscreen-foreground = ${colors.foreground}
+;label-floating = "  "
+label-floating-foreground = ${colors.foreground}
+;label-pseudotiled = "  "
+label-pseudotiled-foreground = ${colors.foreground}
+;label-locked = "  "
+label-locked-foreground = ${colors.foreground}
+;label-sticky = "  "
+label-sticky-foreground = ${colors.foreground}
+;label-private =  "     "
+label-private-foreground = ${colors.foreground}
+
+; Separator in between workspaces
+;label-separator = |
+;label-separator-padding = 10
+;label-separator-foreground = #ffb52a
+
+format-foreground = ${colors.foreground}
+format-background = ${colors.background}
+
+# MODULES
+
+[module/cpu2]
+;https://github.com/jaagr/polybar/wiki/Module:-cpu
+type = internal/cpu
+; Seconds to sleep between updates
+; Default: 1
+interval = 1
+format-foreground = ${colors.foreground}
+format-background = ${colors.background}
+;format-prefix = "  "
+format-prefix-foreground = #cd1f3f
+format-underline = #cd1f3f
+
+label-font = 3
+
+; Available tags:
+;   <label> (default)
+;   <bar-load>
+;   <ramp-load>
+;   <ramp-coreload>
+format = <label>
+
+format-padding = 2
+
+; Available tokens:
+;   %percentage% (default) - total cpu load
+;   %percentage-cores% - load percentage for each core
+;   %percentage-core[1-9]% - load percentage for specific core
+label = CPU: %percentage:3%%
+
+[module/date]
+;https://github.com/jaagr/polybar/wiki/Module:-date
+type = internal/date
+; Seconds to sleep between updates
+interval = 5
+; See "http://en.cppreference.com/w/cpp/io/manip/put_time" for details on how to format the date string
+; NOTE: if you want to use syntax tags here you need to use %%{...}
+;date = " %d%"
+;date-alt = " %d"
+time = %H:%M
+time-alt = %d/%m/%y 
+;format-prefix = " "
+format-prefix-foreground = #c1941a
+format-underline = #c1941a
+format-foreground = ${colors.foreground}
+format-background = ${colors.background}
+label = %date% %time%
+
+[module/memory1]
+;https://github.com/jaagr/polybar/wiki/Module:-memory
+type = internal/memory
+interval = 1
+; Available tokens:
+;   %percentage_used% (default)
+;   %percentage_free%
+;   %gb_used%
+;   %gb_free%
+;   %gb_total%
+;   %mb_used%
+;   %mb_free%
+;   %mb_total%
+label = %percentage_used%%
+bar-used-indicator =
+bar-used-width = 10
+bar-used-foreground-0 = #3384d0
+bar-used-fill = 
+bar-used-empty = 
+bar-used-empty-foreground = #ffffff
+
+format = <label> <bar-used>
+format-prefix = "  "
+format-prefix-foreground = #3384d0
+format-underline = #3384d0
+format-foreground = ${colors.foreground}
+format-background = ${colors.background}
+
+################################################################################
+
+[module/memory2]
+;https://github.com/jaagr/polybar/wiki/Module:-memory
+type = internal/memory
+interval = 1
+; Available tokens:
+;   %percentage_used% (default)
+;   %percentage_free%
+;   %gb_used%
+;   %gb_free%
+;   %gb_total%
+;   %mb_used%
+;   %mb_free%
+;   %mb_total%
+label = %percentage_used%%
+
+format = RAM: <label>
+;format-prefix = "  "
+format-prefix-foreground = #3384d0
+format-underline = #3384d0
+format-foreground = ${colors.foreground}
+format-background = ${colors.background}
+
+################################################################################
+
+[module/memory3]
+;https://github.com/jaagr/polybar/wiki/Module:-memory
+type = internal/memory
+interval = 1
+; Available tokens:
+;   %percentage_used% (default)
+;   %percentage_free%
+;   %gb_used%
+;   %gb_free%
+;   %gb_total%
+;   %mb_used%
+;   %mb_free%
+;   %mb_total%
+label = %gb_used%/%gb_free%
+
+format = Mem <label>
+format-prefix = "  "
+format-prefix-foreground = #3384d0
+format-underline = #3384d0
+format-foreground = ${colors.foreground}
+format-background = ${colors.background}
+
+
+################################################################################
+
+[module/sep]
+; alternative separator
+type = custom/text
+content = 
+content-foreground = ${colors.foreground}
+content-background =  ${colors.background}
+format-foreground = ${colors.foreground}
+format-background = ${colors.background}
+
+
+####################################################################
+[module/xwindow]
+;https://github.com/jaagr/polybar/wiki/Module:-xwindow
+type = internal/xwindow
+
+; Available tokens:
+;   %title%
+; Default: %title%
+label = %title%
+label-maxlen = 50
+
+format-foreground = ${colors.foreground}
+format-background = ${colors.background}
+
+###############################################################################
+
+
+[module/xworkspaces]
+type = internal/xworkspaces
+
+pin-workspaces = false
+enable-click = true
+enable-scroll = true
+reverse-scroll = true
+
+
+icon-0 = 1; 
+icon-1 = 2; 
+icon-2 = 3;
+icon-3 = 4;
+icon-4 = 5;
+#icon-5 = 6;
+format = <label-state>
+label-monitor = %name%
+
+label-active = %index%
+label-active-foreground = ${colors.active}
+label-active-background = ${colors.background}
+label-active-underline= #6790eb
+label-active-padding = 2
+
+label-occupied = %index%
+label-occupied-foreground = ${colors.foreground}
+label-occupied-background = ${colors.background}
+label-occupied-padding = 2
+
+label-urgent = %index%
+label-urgent-foreground = ${colors.foreground}
+label-urgent-background = ${colors.alert}
+label-urgent-underline = ${colors.alert}
+label-urgent-padding = 2
+
+
+label-empty = %index%
+label-empty-foreground = ${colors.foreground}
+label-empty-padding = 2
+format-foreground = ${colors.foreground}
+format-background = ${colors.background}
+

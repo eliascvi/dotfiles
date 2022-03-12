@@ -1,0 +1,220 @@
+### APPS ###
+# hide
+super + period
+        bspc node -g hidden
+# unhide
+super + alt + period
+        ${HOME}/.config/bspwm/bspcmd unhide
+
+# random background
+super + m
+	~/scripts/randomwall.sh
+# Balance Nodes
+super + b
+	bspc node @focused:/ -B
+
+#rofi calc
+super + F12
+	rofi -show calc
+#nbrowser
+super + alt + w
+        nbrowser
+#Emacs
+super + e
+    emacs
+
+# Alacritty
+super + n
+    st
+
+#Browser
+super + w
+    brave
+
+#Rofi
+super + d
+    rofi -show drun
+
+#arcolinux-logout
+super + x
+     powermenu
+#    arcolinux-logout
+
+#rofi emoji
+super + r
+    rofi -show emoji
+
+#rofi pdfs
+super + t
+    rofi -show file-browser-extended [ -file-browser-dir /run/media/elias/500GB/Study/ ]
+
+#urxvt
+super + Return
+    urxvt
+
+#Xkill
+super + Escape
+    xkill
+
+#Keyboard dependent
+#urxvt
+super + KP_Enter
+	urxvt
+
+#File-Manager
+super + shift + Return
+	thunar
+
+#dmenu
+super + shift + d
+	dmenu_run -i -nb '#191919' -nf '#fea63c' -sb '#fea63c' -sf '#191919' -fn 'NotoMonoRegular:bold:pixelsize=14'
+
+#reload sxhkd:
+super + shift + s
+	pkill -USR1 -x sxhkd
+
+#screeenshooter
+ctrl + Print
+     xfce4-screenshooter
+
+#Raises volume
+XF86AudioRaiseVolume
+    amixer set Master 10%+
+
+#Lowers volume
+XF86AudioLowerVolume
+    amixer set Master 10%-
+
+#Mute
+XF86AudioMute
+    amixer -D pulse set Master 1+ toggle
+
+#Playerctl works for Pragha, Spotify and others
+#Delete the line for playerctl if you want to use mpc
+#and replace it with the corresponding code
+#mpc works for e.g.ncmpcpp
+#mpc toggle
+#mpc next
+#mpc prev
+#mpc stop
+
+#PLAY
+XF86AudioPlay
+    playerctl play-pause
+
+#Next
+XF86AudioNext
+    playerctl next
+
+#previous
+XF86AudioPrev
+    playerctl previous
+
+#Stop
+XF86AudioStop
+    playerctl stop
+
+#Brightness up
+XF86MonBrightnessUp
+    xbacklight -inc 10
+
+#Brightness down
+XF86MonBrightnessDown
+    xbacklight -dec 10
+
+#Hide polybar
+#super + y
+#    polybar-msg cmd toggle
+
+#Picom Toggle
+ctrl + alt + o
+    ~/.config/bspwm/scripts/picom-toggle.sh
+
+### BSPC ###
+# Balance Tree
+super + shift + {z}
+	bspc node @/ -C {forward}
+
+#Toggle fullscreen of window
+super + f
+	bspc node --state \~fullscreen
+
+# Toggle pseudo tiling of window
+super + p
+	bspc node --state \~pseudo_tiled
+
+#kill
+super + q
+	bspc node -c
+
+# shift focus
+super + shift + {Left,Right}
+	bspc node -d {prev,next} -f
+
+# Switch desktop with arrow keys
+super + {Left,Right}
+	bspc desktop {prev,next} -f
+#super + Right
+#	bspc desktop {next} -f
+
+# focus given desktop
+super + {1-9,0}
+    bspc desktop -f '^{1-9,10}'
+
+# send to the given desktop with focus
+super + shift + {1-9,0}
+    id=$(bspc query -N -n); \
+    bspc node -d '^{1-9,10}'; \
+    bspc node -f ${id}
+
+# set the window state
+super + space
+	bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
+
+super + shift + f
+        bspc node --state \~floating
+
+# Cancel preselection
+super + ctrl + space
+	bspc node --presel-dir cancel
+
+#Reload bspwm
+super + shift + r
+	~/.config/bspwm/bspwmrc
+
+# Focus/swap windows by direction
+super + {_,shift + }{h,j,k,l}
+	bspc node --{focus,swap} {west,south,north,east}
+
+# Flip layout vertically/horizontally
+super + {_,shift + }a
+	bspc node @/ --flip {vertical,horizontal}
+
+# Preselect the splitting area for next window on leaf/parent
+super + ctrl + {u,i,o,p}
+	bspc node --presel-dir \~{west,south,north,east}
+
+# Expand tiled space
+alt + shift + {h,j,k,l}
+	bspc node {@west -r -10,@south -r +10,@north -r -10,@east -r +10}
+
+# Contract tiled space
+super + ctrl + {h,j,k,l}
+	bspc node {@east -r -10,@north -r +10,@south -r -10,@west -r +10}
+
+# resize windows
+super + alt + {h,j,k,l}
+    {bspc node @parent/second -z left -20 0; \
+    bspc node @parent/first -z right -20 0, \
+    bspc node @parent/second -z top 0 +20; \
+    bspc node @parent/first -z bottom 0 +20, \
+    bspc node @parent/first -z bottom 0 -20; \
+    bspc node @parent/second -z top 0 -20, \
+    bspc node @parent/first -z right +20 0; \
+    bspc node @parent/second -z left +20 0}
+
+## super & mouse scroll
+
+# Focused desktop window gap
+super + button{4,5}
+  bspc config -d focused window_gap $((`bspc config -d focused window_gap` {-,+} 2 ))
