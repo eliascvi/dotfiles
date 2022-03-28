@@ -1,0 +1,2 @@
+#!/bin/bash
+docker run -d --name pihole -e ServerIP=192.168.0.23 -e WEBPASSWORD="123" -e DNS1=8.8.8.8 -p 9080:80 -p 53:53/tcp -p 53:53/udp -p 9443:443 pihole/pihole:latest

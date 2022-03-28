@@ -1,0 +1,19 @@
+# Neuroscience
+https://www.jneurosci.org/rss/recent.xml "Neuroscience Journal"
+https://bmcneurosci.biomedcentral.com/articles/most-recent/rss.xml
+https://neurosciencenews.com/feed/
+https://knowingneurons.com/feed/
+https://www.cogneurosociety.org/feed/
+https://news.mit.edu/rss/topic/neuroscience
+https://molecularneurodegeneration.biomedcentral.com/articles/most-recent/rss.xml
+https://neuroscience.berkeley.edu/feed/
+https://sharpbrains.com/feed/
+https://www.cell.com/neuron/current.rss
+https://www.medscape.com/cx/rssfeeds/2684.xml
+# Philosophy
+http://aphilosopher.drmcl.com/feed/
+https://philosophyofbrains.com/feed
+https://www.terkko.helsinki.fi/feednavigator/export.php?c=Philosophy&c2=
+https://www.julianbaggini.com/feed/
+https://philosophybites.libsyn.com/rss
+https://philosophynow.org/podcasts/rss
